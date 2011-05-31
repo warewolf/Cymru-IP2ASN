@@ -1,7 +1,6 @@
 #!/usr/bin/perl
 
 use Test::More qw(no_plan);
-use Data::Dumper;
 
 use Cymru::IP2ASN;
 
