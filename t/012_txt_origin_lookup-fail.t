@@ -7,12 +7,12 @@ use Cymru::IP2ASN;
 
 my $cymru = new Cymru::IP2ASN;
 
-my ($return) = $cymru->_cymru_txt_lookup("origin","abcd");
-isnt(ref($return),"ARRAY","cymru sample origin lookup fail returns non-arrayref");
-is ($return,undef,"cymru sample origin lookup fail returns undef");
+my ($one) = $cymru->_cymru_txt_lookup("origin","abcd");
+isnt(ref($one),"ARRAY","cymru sample origin lookup fail returns non-arrayref");
+is ($one,undef,"cymru sample origin lookup fail returns undef");
 
-my $origin = $cymru->origin("216.90.108.31");
-foreach my $orig (@$origin) {
-print Data::Dumper->Dump([$orig],[qw($orig)]);
-print "Origin ASN: ",$orig->asn(),"\n";
-}
+my $two = $cymru->origin("216.90.108.31");
+is ($two->asn(),23028,"cymru sample origin scalar context object asn value");
+
+my (@three) = $cymru->origin("216.90.108.31");
+is($three[0]->asn(),23028,"cymru sample origin list context object asn value");
